@@ -6,6 +6,7 @@ function time() {
   const s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
   document.querySelector('.time').innerHTML = `${h}:${m}:${s}`
   calendar(date)
+  greetings(h)
 }
 
 setInterval(time, 1000)
@@ -43,3 +44,16 @@ function calendar(date) {
   const numDay = date.getDay()
   document.querySelector('.date').innerHTML = `${day}, ${month} ${numDay}`
 }
+
+/// greetings
+
+function greetings(h) {
+  const greeting = document.querySelector('.greeting')
+  if (h <= 5) greeting.innerHTML = 'Good night'
+  else if (h >= 6 && h < 12) greeting.innerHTML = 'Good morning'
+  else if (h >= 12 && h < 18) greeting.innerHTML = 'Good afternoon'
+  else 'Good evening'
+}
+
+
+/// name
