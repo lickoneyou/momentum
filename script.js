@@ -1,5 +1,6 @@
 window.addEventListener('load', function () {
   getName()
+  setInterval(time, 1000)
 })
 
 // clock
@@ -10,10 +11,8 @@ function time() {
   const s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
   document.querySelector('.time').innerHTML = `${h}:${m}:${s}`
   calendar(date)
-  greetings(h)
+  greetings()
 }
-
-setInterval(time, 1000)
 
 //calendar
 
@@ -51,12 +50,22 @@ function calendar(date) {
 
 /// greetings
 
-function greetings(h) {
+function greetings() {
+  let h = new Date().getHours()
   const greeting = document.querySelector('.greeting')
-  if (h <= 5) greeting.innerHTML = 'Good night,'
-  else if (h >= 6 && h < 12) greeting.innerHTML = 'Good morning,'
-  else if (h >= 12 && h < 18) greeting.innerHTML = 'Good afternoon,'
-  else 'Good evening,'
+  if (h <= 5) {
+    greeting.innerHTML = 'Good night,'
+    return 'night'
+  } else if (h >= 6 && h < 12) {
+    greeting.innerHTML = 'Good morning,'
+    return 'morning'
+  } else if (h >= 12 && h < 18) {
+    greeting.innerHTML = 'Good afternoon,'
+    return 'afternoon'
+  } else if (h > 18) {
+    greeting.innerHTML = 'Good evening,'
+    return 'evening'
+  }
 }
 
 /// name
@@ -68,3 +77,19 @@ function getName() {
   })
   input.value = localStorage.getItem('name')
 }
+
+//slider
+
+function randomInt() {
+  const int = Math.floor(Math.random() * (20 - 1 + 1) + 1)
+  return int < 10 ? '0' + int : int
+}
+
+function randomPic() {
+  document.querySelector(
+    'body',
+  ).style.background = `url(./assets/images/${greetings(5)}/${randomInt()}.jpg)`
+  console.log(`(./assets/images/${greetings()}/${randomInt()}.jpg)`)
+}
+
+randomPic()
