@@ -1,3 +1,7 @@
+window.addEventListener('load', function () {
+  getName()
+})
+
 // clock
 function time() {
   const date = new Date()
@@ -49,11 +53,18 @@ function calendar(date) {
 
 function greetings(h) {
   const greeting = document.querySelector('.greeting')
-  if (h <= 5) greeting.innerHTML = 'Good night'
-  else if (h >= 6 && h < 12) greeting.innerHTML = 'Good morning'
-  else if (h >= 12 && h < 18) greeting.innerHTML = 'Good afternoon'
-  else 'Good evening'
+  if (h <= 5) greeting.innerHTML = 'Good night,'
+  else if (h >= 6 && h < 12) greeting.innerHTML = 'Good morning,'
+  else if (h >= 12 && h < 18) greeting.innerHTML = 'Good afternoon,'
+  else 'Good evening,'
 }
 
-
 /// name
+
+function getName() {
+  const input = document.querySelector('.greeting-container input')
+  input.addEventListener('change', function () {
+    localStorage.setItem('name', this.value)
+  })
+  input.value = localStorage.getItem('name')
+}
