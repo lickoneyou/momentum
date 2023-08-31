@@ -118,10 +118,41 @@ function slider(direction) {
 
 document.querySelector('.slide-next').addEventListener('click', function () {
   slider('right')
-  console.log(document.querySelector('body').style.background)
 })
 
 document.querySelector('.slide-prev').addEventListener('click', function () {
   slider('left')
-  console.log(document.querySelector('body').style.background)
 })
+
+/// quotes
+
+const quotes = [
+  {
+    quote: 'The only sin is ignorance',
+    source: 'Christopher Marlowe',
+  },
+  {
+    quote:
+      'A man is his own easiest dupe, for what he wishes to be true he generally believes to be true',
+    source: 'Demosthenes',
+  },
+  {
+    quote:
+      'A lie can travel halfway around the world while the truth is putting on its shoes',
+    source: 'Mark Twain',
+  },
+]
+
+function randomQuotes() {
+  const quote = document.querySelector('.quote')
+  const author = document.querySelector('.author')
+
+  const randomQ = Math.floor(Math.random() * quotes.length)
+
+  quote.innerHTML = quotes[randomQ].quote
+  author.innerHTML = quotes[randomQ].source
+}
+
+randomQuotes()
+
+document.querySelector('.change-quote').addEventListener('click', randomQuotes)
