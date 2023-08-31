@@ -88,8 +88,40 @@ function randomInt() {
 function randomPic() {
   document.querySelector(
     'body',
-  ).style.background = `url(./assets/images/${greetings(5)}/${randomInt()}.jpg)`
-  console.log(`(./assets/images/${greetings()}/${randomInt()}.jpg)`)
+  ).style.background = `url(./assets/images/${greetings()}/${randomInt()}.jpg)`
 }
 
 randomPic()
+
+function slider(direction) {
+  const bg = document.querySelector('body').style.background
+  let count = +bg.replace(/[^0-9]/gi, '')
+  if (direction === 'right') {
+    if (count < 20) {
+      count++
+    } else {
+      count = 1
+    }
+  } else {
+    if (count > 1) {
+      count--
+    } else {
+      count = 20
+    }
+  }
+  document.querySelector(
+    'body',
+  ).style.background = `url(./assets/images/${greetings()}/${
+    count < 10 ? '0' + count : count
+  }.jpg)`
+}
+
+document.querySelector('.slide-next').addEventListener('click', function () {
+  slider('right')
+  console.log(document.querySelector('body').style.background)
+})
+
+document.querySelector('.slide-prev').addEventListener('click', function () {
+  slider('left')
+  console.log(document.querySelector('body').style.background)
+})
