@@ -156,3 +156,87 @@ function randomQuotes() {
 randomQuotes()
 
 document.querySelector('.change-quote').addEventListener('click', randomQuotes)
+
+/// Player
+
+const audio = document.querySelector('audio')
+audio.src = './assets/sounds/Aqua Caelestis.mp3'
+const play = document.querySelector('.play')
+
+const playList = [
+  'Aqua Caelestis',
+  'Ennio Morricone',
+  'River Flows In You',
+  'Summer Wind',
+]
+
+playList.map((el) => {
+  document.querySelector('.play-list').innerHTML += `<li>${el}</li>`
+})
+
+document.querySelector('.play-list li').style.color = 'red'
+
+play.addEventListener('click', function () {
+  if (audio.paused) {
+    audio.play()
+    play.classList.add('pause')
+    interval()
+  } else {
+    audio.pause()
+    play.classList.remove('pause')
+  }
+})
+
+function list() {
+  let count = 0
+  return (direction) => {
+    if (direction == 'left') {
+      if (count == 0) {
+        count = playList.length - 1
+      } else {
+        count--
+      }
+    } else {
+      if (count < playList.length - 1) {
+        count++
+      } else {
+        count = 0
+      }
+    }
+    document
+      .querySelectorAll('.play-list li')
+      .forEach((el, ind) =>
+        ind == count ? (el.style.color = 'red') : (el.style.color = 'white'),
+      )
+    return count
+  }
+}
+
+const myList = list()
+
+document.querySelector('.play-next').addEventListener('click', function () {
+  audio.src = `./assets/sounds/${playList[myList('right')]}.mp3`
+  audio.play()
+  play.classList.add('pause')
+  interval()
+})
+
+document.querySelector('.play-prev').addEventListener('click', function () {
+  audio.src = `./assets/sounds/${playList[myList('left')]}.mp3`
+  audio.play()
+  play.classList.add('pause')
+  interval()
+})
+
+function interval() {
+  const int = setInterval(() => {
+    if (audio.currentTime === audio.duration) {
+      audio.src = `./assets/sounds/${playList[myList()]}.mp3`
+      audio.play()
+      clearInterval(int)
+      interval()
+    }
+  }, 1000)
+}
+
+// document.querySelectorAll('.play-list li').forEach(el => el.innerHTML)
