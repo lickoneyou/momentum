@@ -44,7 +44,7 @@ const calendarMonth = [
 function calendar(date) {
   const day = calendarDay[date.getDay()]
   const month = calendarMonth[date.getMonth()]
-  const numDay = date.getDay()
+  const numDay = date.getDate()
   document.querySelector('.date').innerHTML = `${day}, ${month} ${numDay}`
 }
 
