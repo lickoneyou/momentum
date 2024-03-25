@@ -1,0 +1,22 @@
+{
+  "name": "momentum",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lickoneyou/momentum.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lickoneyou/momentum/issues"
+  },
+  "homepage": "https://github.com/lickoneyou/momentum#readme",
+  "devDependencies": {
+    "cypress": "^13.7.1"
+  }
+}
